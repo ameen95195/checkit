@@ -13,7 +13,7 @@ export async function sendQuestionGPT(value) {
         headers: {
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
-            "Authorization": "Bearer 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"
+            "Authorization": "Bearer "
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
