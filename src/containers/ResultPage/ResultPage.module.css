@@ -1,0 +1,25 @@
+.ResultPage {
+    text-align: -webkit-center;
+    color: white;
+    font-size: large;
+    overflow: auto;
+    height: 40%;
+    padding: 20px;
+    direction: rtl;
+    text-align: start;
+    background-color: #383838;
+
+}
+
+li {
+    text-transform: uppercase;
+    padding-left: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+ul {
+    text-transform: none;
+    font-weight: normal;
+    color: wheat;
+}
