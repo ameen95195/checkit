@@ -28,7 +28,7 @@ const Home = () => {
         getAllQ().then(query => {
             const qs = []
             query.forEach(doc => {
-                qs.push({data: doc.data().data.replace("___", search), id: doc.data().id})
+                qs.push({data: doc.data().data.replace("___", search), id: doc.data().id, title: doc.data().title})
             })
             let counter = 0
             const qs_sorted = qs.sort((a, b) => a.id < b.id)

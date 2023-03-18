@@ -18,7 +18,7 @@ const ResultPage = (props) => {
                                 return (
                                     <div key={"data " + index}>
                                         <ul>
-                                            {d.q.data}
+                                            {d.q.title}
                                         </ul>
                                         <li>
                                             {d.message.content}

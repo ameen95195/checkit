@@ -3,13 +3,14 @@ import {collection, getDocs, addDoc} from "firebase/firestore";
 
 const COLLECTION_QUESTIONS = 'questions'
 
-export async function addQ(id, value) {
+export async function addQ(id, title, value) {
     // Add a new document in collection "cities"
     console.log(db)
     // Add a new document in collection "cities"
     return await addDoc(collection(db, COLLECTION_QUESTIONS), {
         "data": value,
-        "id": id
+        "id": id,
+        "title": title
     });
 }
 

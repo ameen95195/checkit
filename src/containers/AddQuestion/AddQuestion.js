@@ -7,11 +7,14 @@ import {addQ, getAllQ} from "../../utils/firebase-actions";
 const AddQuestion = () => {
     const [question, setQuestion] = useState("")
     const [id, setId] = useState()
+    const [title, setTitle] = useState()
 
     function handelChange(e) {
         if (e.target.id === "id") {
             setId(e.target.value)
-        } else
+        } else if (e.target.id === "title")
+            setTitle(e.target.value)
+        else
             setQuestion(e.target.value)
     }
 
@@ -33,6 +36,10 @@ const AddQuestion = () => {
                 <tr>
                     <td>
                         <TextField onChange={handelChange} id="id" onKeyDown={handelKeyDown} label="ID"
+                                   variant="standard"/>
+                    </td>
+                    <td>
+                        <TextField onChange={handelChange} id="title" onKeyDown={handelKeyDown} label="العنوان"
                                    variant="standard"/>
                     </td>
                     <td>
