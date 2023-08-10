@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {RecoilRoot} from "recoil";
+import {RTL} from "./utils/RtlPlogin";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <RecoilRoot>
-            <App/>
+            {/*<RTL>*/}
+                <App/>
+            {/*</RTL>*/}
         </RecoilRoot>
     </React.StrictMode>
 );

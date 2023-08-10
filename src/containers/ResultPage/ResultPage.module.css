@@ -3,12 +3,14 @@
     color: white;
     font-size: large;
     overflow: auto;
-    height: 40%;
     padding: 20px;
-    direction: rtl;
     text-align: start;
     background-color: #383838;
 
+}
+
+.wrap{
+    text-wrap: balance;
 }
 
 li {

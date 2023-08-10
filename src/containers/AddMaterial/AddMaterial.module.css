@@ -1,0 +1,54 @@
+.AddQuestion {
+    align-self: center;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    display: block;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+}
+
+.container{
+    width: 80%;
+    background-color: #fffdfd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: gray;
+}
+
+
+.BorderTable table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.BorderTable  th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+.BorderTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.BorderTable td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.BorderTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.BorderTable tr:hover {background-color: #ddd;}
+
+.BorderTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}

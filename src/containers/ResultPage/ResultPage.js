@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styles from './ResultPage.module.css';
+import PropTypes from "prop-types";
 
 const ResultPage = (props) => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState()
 
     useEffect(() => {
         setData(props.data)
@@ -12,30 +13,18 @@ const ResultPage = (props) => {
         <div className={styles.ResultPage}>
             <div>
                 <div>
-                    <div style={{overflowY: "auto"}}>
-                        {data && data.map((d, index) => {
-                            if (d.message && d.message.content) {
-                                return (
-                                    <div key={"data " + index}>
-                                        <ul>
-                                            {d.q.title}
-                                        </ul>
-                                        <li>
-                                            {d.message.content}
-                                        </li>
-                                        <br/>
-                                    </div>
-                                )
-                            }
-                        })}
-                    </div>
+                    <pre style={{overflowY: "auto"}} className={styles.wrap}>
+                        {data}
+                    </pre>
                 </div>
             </div>
         </div>
     );
 }
 
-ResultPage.propTypes = {};
+ResultPage.propTypes = {
+    data: PropTypes.string.isRequired,
+};
 
 ResultPage.defaultProps = {"data": [{}]};
 

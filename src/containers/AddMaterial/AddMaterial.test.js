@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddQuestion from './AddQuestion';
+import AddMaterial from './AddMaterial';
 
 it('It should mount', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<AddQuestion />, div);
+  ReactDOM.render(<AddMaterial />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
