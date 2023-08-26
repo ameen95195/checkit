@@ -17,11 +17,9 @@ li {
     text-transform: uppercase;
     padding-left: 20px;
     font-weight: bold;
-    color: white;
 }
 
 ul {
     text-transform: none;
     font-weight: normal;
-    color: wheat;
 }

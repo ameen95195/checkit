@@ -6,7 +6,7 @@ import {addQ, deleteQ, getAllQ} from "../../utils/firebase-actions";
 
 const AddMaterial = () => {
     const [constrains, setConstrains] = useState({
-        lower: -1, upper: -1
+        lower: 0, upper: 0
     })
     const [isPercentage, setIsPercentage] = useState(false);
 
@@ -56,8 +56,12 @@ const AddMaterial = () => {
     }
 
     function checkConstrains() {
-        if (constrains.lower > constrains.upper) {
+        if (parseFloat(constrains.lower) > parseFloat(constrains.upper)) {
             alert("Error!!... ''Lower'' should be smaller than Upper ")
+            return false
+        }
+        if (parseFloat(constrains.upper) > 100 && isPercentage){
+            alert("Error!!... ''Upper'' should be <= 100% ")
             return false
         }
 
@@ -91,12 +95,12 @@ const AddMaterial = () => {
                 </td>
                 <td>
                     <TextField onChange={(e) => handelChangeConst("lower", e.target.value)} onKeyDown={handelKeyDown}
-                               label="Start"
+                               label="Lower"
                                variant="standard" type={"number"} value={constrains.lower}/>
                 </td>
                 <td>
                     <TextField onChange={(e) => handelChangeConst("upper", e.target.value)} onKeyDown={handelKeyDown}
-                               label="End"
+                               label="Upper"
                                variant="standard" type={"number"} value={constrains.upper}/>
                 </td>
             </tr>
