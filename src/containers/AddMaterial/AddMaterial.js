@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from './AddMaterial.module.css';
 import {Button, Checkbox, IconButton, TextField} from "@mui/material";
+import Grid from '@mui/material/Unstable_Grid2';
 import {AddRounded, CheckBox, Delete} from "@mui/icons-material";
 import {addQ, deleteQ, getAllQ} from "../../utils/firebase-actions";
 
@@ -26,7 +27,6 @@ const AddMaterial = () => {
     }
 
     function handelChangeConst(objName, value) {
-        console.log(constrains)
 
         setConstrains(prevState => ({
             ...prevState, [objName]: value
@@ -34,10 +34,8 @@ const AddMaterial = () => {
     }
 
     function handelClick() {
-        // console.log(addQ("s").then((d) => console.log(d)))
         if (materialName.trim() !== "" && checkConstrains()) {
             if (window.confirm("Are you sure!!!") === true) addQ(materialName, constrains, isPercentage).then(r => {
-                console.log(r)
                 getAllQ().then(data => {
                     setAddedData(data)
                 })
@@ -75,54 +73,40 @@ const AddMaterial = () => {
     }
 
     return (<div className={styles.AddQuestion}>
-        <table className={styles.container}>
-            <tbody>
-            <tr>
-                <td>
+        <div className={styles.container}>
+            <Grid container spacing={3} sx={{alignItems: "center", padding: "5px"}}>
+                <Grid xs={4}>
                     <strong>Material Name</strong>
-                </td>
-                <td colSpan={2}>
+                </Grid>
+                <Grid xs={8}>
                     <TextField onChange={handelChange} fullWidth id="title" onKeyDown={handelKeyDown}
                                label="Material Name" value={materialName}
                                variant="standard"/>
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
+                </Grid>
+                <Grid xs={4}>
                     <strong>Value</strong>
-                </td>
-                <td>
+                </Grid>
+                <Grid xs={4}>
                     <TextField onChange={(e) => handelChangeConst("lower", e.target.value)} onKeyDown={handelKeyDown}
                                label="Lower"
                                variant="standard" type={"number"} value={constrains.lower}/>
-                </td>
-                <td>
+                </Grid>
+                <Grid xs={4}>
                     <TextField onChange={(e) => handelChangeConst("upper", e.target.value)} onKeyDown={handelKeyDown}
                                label="Upper"
                                variant="standard" type={"number"} value={constrains.upper}/>
-                </td>
-            </tr>
+                </Grid>
 
-            <tr>
-                <td style={{display: "inline-flex", justifyContent: "center", alignItems:"center"}} colSpan={2} rowSpan={2} align={"center"}>
+                <Grid xs={4}>
                     <strong>Is percentage: %</strong> <Checkbox onChange={(event) => {
                     setIsPercentage(event.target.checked)
-                }}/>
-                </td>
+                }}/>                </Grid>
 
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                <Grid xs={8}>
                     <Button color="secondary" onClick={handelClick} variant="contained">Add Material</Button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </Grid>
+            </Grid>
+        </div>
 
         <br/>
         <br/>

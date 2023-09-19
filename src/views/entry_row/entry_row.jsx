@@ -7,30 +7,34 @@ import {wait} from "@testing-library/user-event/dist/utils";
 
 const EntryRow = (props) => {
 
-    const [material, setMaterial] = useState({
-        material: {},
-        value: 0
-    })
+    const [material, setMaterial] = useState(props.value)
+
+    useEffect(() => {
+        setMaterial(props.value)
+    }, [props.value])
 
     function handleChange(e) {
-        console.log(e)
         const name = e.target.name
         const value = e.target.value
-        if (name === "selectMaterial" && value !== "")
-            setMaterial(prevState => ({...prevState, material: value}))
-        if (name === "value")
+
+
+        if (name === "selectMaterial") {
+            props.onTextChange(props.id, {...material, material: value})
+            setMaterial(prevState => ({
+                value: value === "" ? 0 : prevState.value,
+                material: value,
+            }))
+        } else if (name === "value") {
+            props.onTextChange(props.id, {...material, value: value})
             setMaterial(prevState => ({...prevState, value: value}))
-        console.log(material)
-    }
-
-    function handelRemove(id) {
-        // const t = height / 10
-        // setInterval
-        // wait(300).then(r => {
-        //
-        // })
+        }
 
     }
+
+    function handelRemove() {
+        props.onRemoveEntry(props.id)
+    }
+
 
     return (
         <div className={styles.EntryRow}>
@@ -41,7 +45,7 @@ const EntryRow = (props) => {
                     <InputLabel id="demo-select-small-label">Material Name</InputLabel>
                     <Select
                         labelId="demo-select-small-label"
-                        value={material.material.name}
+                        value={material.material}
                         label="Material Name"
                         onChange={handleChange}
                         name="selectMaterial"
@@ -50,7 +54,6 @@ const EntryRow = (props) => {
                             <em>None</em>
                         </MenuItem>
                         {props.materials.length === 0 ? "" : props.materials.map((mat, index) => {
-                            console.log(mat)
                             return (
                                 <MenuItem key={index} value={mat}>{mat.name}</MenuItem>
                             )
@@ -61,27 +64,28 @@ const EntryRow = (props) => {
 
                 <TextField
                     variant={"outlined"}
-                    id={"value: " + props.id}
+                    disabled={material.material === ""}
+                    id={props.id.toString()}
                     value={material.value}
                     label={"Value"}
                     name={"value"}
                     type={"number"}
                     onChange={handleChange}
                     InputProps={{
-                        endAdornment: <InputAdornment position={"end"}> {material.material.isPercentage? "%":"mg"} </InputAdornment>
+                        endAdornment: <InputAdornment
+                            position={"end"}> {material.material.isPercentage ? "%" : "mg"} </InputAdornment>
                     }}/>
 
-                {
-                    props.id === 0 ? "" :
-                        <Chip
-                            sx={{alignSelf: 'center'}}
-                            id={props.id} label={"Remove"}
-                            cl
-                            color={"error"}
-                            onDelete={() => props.onRemoveEntry(props.id)}
-                            onClick={() => props.onRemoveEntry(props.id)}/>
 
-                }
+                <Chip
+                    disabled={props.id === 0}
+                    sx={{alignSelf: 'center'}}
+                    id={props.id} label={"Remove"}
+                    cl
+                    color={"error"}
+                    onDelete={handelRemove}
+                    onClick={handelRemove}/>
+
 
             </Stack>
         </div>

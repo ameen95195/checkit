@@ -19,6 +19,13 @@
     box-shadow: gray;
 }
 
+.center-items{
+    justify-content: center;
+    align-content: center;
+    horiz-align: center;
+    align-items: center;
+}
+
 
 .BorderTable table {
     border: 1px solid black;
